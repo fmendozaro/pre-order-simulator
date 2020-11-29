@@ -1,6 +1,7 @@
 "use strict";
 
 const API_URL = "https://preorder-json-srv.glitch.me/inventory";
+const MAX_INVENTORY = 10;
 let options;
 
 let addCartBtn = document.querySelector("#add-to-cart");
@@ -9,6 +10,7 @@ let stock = document.querySelector("#stock");
 init();
 
 function init(){
+    showLoading('Checking Inventory');
     options = {
         method: 'PUT',
         headers: {
@@ -17,17 +19,20 @@ function init(){
         body: JSON.stringify({
             "id": 1,
             "name": "ps5",
-            "quantity": Math.floor(Math.random() * Math.floor(100))
+            "quantity": Math.floor(Math.random() * Math.floor(MAX_INVENTORY))
         }),
     };
-    updateInventory(1, options);
+    updateInventory(1, options).then( (e) => {
+        hideLoading();
+    });
 
     refreshInventory();
 }
 
 function refreshInventory(){
+    showLoading();
     getInventory().then(items => {
-        console.log(items);
+        hideLoading();
         items.forEach(itemObj => {
             if(itemObj.name === 'ps5'){
                 stock.innerHTML = itemObj.quantity;
@@ -37,12 +42,14 @@ function refreshInventory(){
 }
 
 addCartBtn.addEventListener("click", e => {
+    showLoading('Trying to add to the cart');
     getInventory().then(items => {
+        hideLoading();
         items.forEach(itemObj => {
             if(itemObj.name === 'ps5'){
-                console.log(itemObj);
                 if (itemObj.quantity <= 0) {
-                    console.error("outta stock")
+                    addCartBtn.disabled=true;
+                    console.error("outta stock");
                 } else {
                     itemObj.quantity--;
                     options = {
