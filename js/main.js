@@ -4,6 +4,37 @@ const API_URL = "https://preorder-json-srv.glitch.me/inventory";
 let options;
 
 let addCartBtn = document.querySelector("#add-to-cart");
+let stock = document.querySelector("#stock");
+
+init();
+
+function init(){
+    options = {
+        method: 'PUT',
+        headers: {
+            'Content-Type': 'application/json',
+        },
+        body: JSON.stringify({
+            "id": 1,
+            "name": "ps5",
+            "quantity": Math.floor(Math.random() * Math.floor(100))
+        }),
+    };
+    updateInventory(1, options);
+
+    refreshInventory();
+}
+
+function refreshInventory(){
+    getInventory().then(items => {
+        console.log(items);
+        items.forEach(itemObj => {
+            if(itemObj.name === 'ps5'){
+                stock.innerHTML = itemObj.quantity;
+            }
+        });
+    });
+}
 
 addCartBtn.addEventListener("click", e => {
     getInventory().then(items => {
@@ -21,7 +52,9 @@ addCartBtn.addEventListener("click", e => {
                         },
                         body: JSON.stringify(itemObj),
                     };
-                    updateInventory(itemObj.id, options).then(response => console.log(response)).catch(error => console.error(error));
+                    updateInventory(itemObj.id, options).then(response => {
+                        stock.innerHTML = itemObj.quantity;
+                    }).catch(error => console.error(error));
                 }
             }
         });
