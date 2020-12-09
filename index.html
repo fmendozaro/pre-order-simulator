@@ -21,36 +21,42 @@
         #wrapper{
             display: none;
         }
+        .card-deck .card {
+            max-width: 600px;
+        }
     </style>
 </head>
 <body>
 <span class="oi oi-cart"></span>
 <div class="container">
-    <h1>pre orders simulator</h1>
+    <h1>Online pre-orders simulator</h1>
     <span class="material-icons">shopping_cart</span>
+    <div id="out-stock" class="alert alert-danger d-none" role="alert">
+        Sold out
+    </div>
     <div class="card-deck">
         <div class="card">
-            <h5 class="card-header">PS5</h5>
+            <h5 class="card-header">PlayStation 5 Console</h5>
             <div class="card-body">
                 <img class="card-img-top" src="img/ps5.jpg" alt="">
                 <h5 class="card-title">Disk Edition</h5>
                 <p class="card-text">Experience lightning-fast loading, deeper immersion, & an all-new generation of PlayStation games.</p>
-                <a id="add-to-cart" href="#" class="btn btn-primary">Add to Cart</a>
+                <button id="add-to-cart" class="btn btn-primary">Add to Cart</button>
             </div>
             <div class="card-footer text-muted">
                 <span id="stock">0</span> available
             </div>
         </div>
         <div class="card">
-            <h5 class="card-header">Placeholder</h5>
+            <h5 class="card-header">Xbox Series X</h5>
             <div class="card-body">
-<!--                <img class="card-img-top" src="img/ps5.jpg" alt="">-->
-<!--                <h5 class="card-title">Disk Edition</h5>-->
-<!--                <p class="card-text">Experience lightning-fast loading, deeper immersion, & an all-new generation of PlayStation games.</p>-->
+                <img class="card-img-top" width="300" src="img/xbox.png" alt="">
+                <h5 class="card-title">Disk Edition</h5>
+                <p class="card-text">Experience lightning-fast loading, deeper immersion, & an all-new generation of PlayStation games.</p>
 <!--                <a id="add-to-cart" href="#" class="btn btn-primary">Add to Cart</a>-->
             </div>
             <div class="card-footer text-muted">
-<!--                <span id="stock">1</span> available-->
+                <span id="stock">0</span> available
             </div>
         </div>
     </div>

@@ -6,6 +6,7 @@ let options;
 
 let addCartBtn = document.querySelector("#add-to-cart");
 let stock = document.querySelector("#stock");
+let outStock = document.querySelector("#out-stock");
 
 init();
 
@@ -49,7 +50,11 @@ addCartBtn.addEventListener("click", e => {
             if(itemObj.name === 'ps5'){
                 if (itemObj.quantity <= 0) {
                     addCartBtn.disabled=true;
-                    console.error("outta stock");
+                    addCartBtn.classList.remove("btn-primary");
+                    addCartBtn.classList.add("btn-dark");
+                    addCartBtn.innerHTML = "Out of stock"
+                    outStock.classList.remove("d-none");
+                    outStock.classList.add("block");
                 } else {
                     itemObj.quantity--;
                     options = {
