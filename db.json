@@ -1,0 +1,14 @@
+{
+  "inventory": [
+    {
+      "id": 1,
+      "name": "ps5",
+      "quantity": 0
+    },
+    {
+      "id": 2,
+      "name": "xbox2020",
+      "quantity": 10
+    }
+  ]
+}

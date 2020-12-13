@@ -1,6 +1,6 @@
 "use strict";
 
-const API_URL = "https://preorder-json-srv.glitch.me/inventory";
+const API_URL = "http://pre.fer-mendoza.com/inventory";
 const MAX_INVENTORY = 10;
 let options;
 
